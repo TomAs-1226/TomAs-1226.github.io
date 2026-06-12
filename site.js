@@ -166,8 +166,11 @@
     const cta = document.getElementById("channel-cta");
     if (cta && !cta.childElementCount) cta.append(glassLink("Open the full channel site →", "/channel/", { tint: "green" }));
   }
-  fetch("bili.json", { cache: "no-store" })
+  // live data: box pushes fresh stats to the bilidata branch; fall back to the committed snapshot
+  const BILI_LIVE = "https://raw.githubusercontent.com/TomAs-1226/TomAs-1226.github.io/bilidata/bili.json";
+  fetch(BILI_LIVE, { cache: "no-store" })
     .then((r) => { if (!r.ok) throw 0; return r.json(); })
+    .catch(() => fetch("bili.json", { cache: "no-store" }).then((r) => { if (!r.ok) throw 0; return r.json(); }))
     .then(renderBili)
     .catch(() => {
       const el = document.getElementById("bili");
