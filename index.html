@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en" data-tone="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thomas Yu — Researcher & Developer</title>
+  <meta name="description" content="Thomas (Baichen) Yu — student researcher and developer. Author of Ornimetrics (published AI ecological-monitoring research), developer of the FRC Catalyst robotics library, founder of SparkHub." />
+
+  <link rel="stylesheet" href="liquid-engine.css" />
+  <link rel="stylesheet" href="site.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- live 3D field (the glass refracts this) -->
+  <canvas id="bg3d"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+  <div id="scroll-progress" class="scroll-progress" aria-hidden="true"></div>
+  <div id="dock-wrap" class="dock-wrap"></div>
+
+  <!-- settings panel (the glass playground lives here now) -->
+  <aside id="settings-panel" class="settings-panel" data-lg="card" aria-hidden="true">
+    <span class="lg-rim"></span>
+    <div class="lg-content">
+      <div class="settings-head">
+        <h3>Display settings</h3>
+        <button id="settings-close" aria-label="Close">✕</button>
+      </div>
+      <p class="settings-note">This site renders with a refractive "liquid glass" engine. Tune it live.</p>
+      <div class="set-row"><label>Theme</label><div id="set-theme"></div></div>
+      <div class="set-row"><label>Background motion</label><div id="set-motion"></div></div>
+      <div class="set-row col"><label>Glass refraction</label><div id="set-bend"></div></div>
+      <div class="set-row col"><label>Frost</label><div id="set-frost"></div></div>
+      <div class="set-row col"><label>Light colour</label><div id="set-light"></div></div>
+      <div id="set-reset" class="set-reset"></div>
+    </div>
+  </aside>
+
+  <!-- NAV -->
+  <header id="nav" class="nav" data-lg="card">
+    <a class="nav-mark" href="#top"><span class="nav-dot"></span> THOMAS&nbsp;YU</a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#ornimetrics">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#robotics">Robotics</a>
+      <a href="#channel">Channel</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-right">
+      <div id="nav-cta"></div>
+      <button id="settings-btn" class="settings-btn" aria-label="Display settings" title="Display settings">⚙</button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-eyebrow reveal">AI · Computer Vision · Robotics</div>
+        <h1 class="hero-title reveal" style="--d:.08s">Thomas <span class="grad">Yu</span></h1>
+        <p class="hero-role reveal" style="--d:.16s">Student researcher &amp; developer.</p>
+        <p class="hero-sub reveal" style="--d:.26s">
+          I'm a high-school researcher and developer. I published <strong>Ornimetrics</strong>, an
+          AI ecological-monitoring system; I build <strong>FRC&nbsp;Catalyst</strong>, a robotics
+          library used by competition teams; and I run a self-hosted homelab — including the
+          server delivering this page.
+        </p>
+        <div id="hero-actions" class="hero-actions reveal" style="--d:.36s"></div>
+
+        <div class="hero-stats reveal" style="--d:.5s">
+          <div class="stat"><b data-count="1">0</b><span>Peer-reviewed<br>paper</span></div>
+          <div class="stat"><b data-count="555">0</b><span>Bird species<br>recognised</span></div>
+          <div class="stat"><b data-count="1393" data-suffix="">0</b><span>Bilibili<br>followers</span></div>
+          <div class="stat"><b data-count="12">0</b><span>Homelab<br>services</span></div>
+        </div>
+      </div>
+      <div class="scroll-hint reveal" style="--d:.8s">scroll <span>↓</span></div>
+    </section>
+
+    <!-- SKILLS MARQUEE -->
+    <div class="marquee" aria-label="Tools &amp; technologies">
+      <div id="marquee-track" class="marquee-track"></div>
+    </div>
+
+    <!-- ABOUT -->
+    <section id="about" class="band band-about">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="kicker">About</span>
+          <h2>Research-driven, and I ship.</h2>
+          <p>I work where machine learning meets the physical world — computer vision for ecology,
+            embedded inference on edge hardware, and software tooling for robotics. My work is
+            peer-reviewed and released openly: a published paper, a public model, and an
+            open-source library teams actually use.</p>
+          <p>Outside research I founded <strong>SparkHub</strong>, a student-built learning platform,
+            and run <strong>TomAs测评</strong>, a Bilibili tech channel with a growing audience.</p>
+        </div>
+        <div class="about-facts reveal" style="--d:.1s">
+          <div class="fact" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><span class="fk">Focus</span><span class="fv">CV · Edge ML · Robotics</span></div></div>
+          <div class="fact" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><span class="fk">Languages</span><span class="fv">Python · Java · JS</span></div></div>
+          <div class="fact" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><span class="fk">Published</span><span class="fv">CS &amp; IT · Vol 16</span></div></div>
+          <div class="fact" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><span class="fk">Open source</span><span class="fv">GitHub · Hugging Face</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNIMETRICS (featured research) -->
+    <section id="ornimetrics" class="band">
+      <div class="band-head reveal">
+        <span class="kicker">Featured Research</span>
+        <h2>Ornimetrics</h2>
+        <p class="lead">An AI-enabled smart bird feeder and edge-vision system for species
+          recognition, welfare screening, and ecological monitoring — peer-reviewed, and released
+          as an open edge model.</p>
+      </div>
+
+      <div class="invention-grid">
+        <article id="inv-hero" class="invention-feature"></article>
+        <div class="invention-side">
+          <article class="mini" data-lg="card"><span class="lg-rim"></span><div class="lg-content">
+            <div class="mini-ic">🪶</div><h3>Species &amp; individual ID</h3>
+            <p>YOLOv11 detection with classifiers over 555 North-American species, plus ArcFace re-ID to track individuals over time.</p></div></article>
+          <article class="mini" data-lg="card"><span class="lg-rim"></span><div class="lg-content">
+            <div class="mini-ic">🩺</div><h3>Welfare screening</h3>
+            <p>An anomaly detector flags injured or distressed birds at 0.96+ AUC.</p></div></article>
+          <article class="mini" data-lg="card"><span class="lg-rim"></span><div class="lg-content">
+            <div class="mini-ic">🛰️</div><h3>Runs on the edge</h3>
+            <p>The whole pipeline runs on a Raspberry Pi 5 + Hailo-8 accelerator — no cloud.</p></div></article>
+        </div>
+      </div>
+
+      <div class="metric-strip reveal">
+        <div class="metric" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><b>0.93</b><span>mAP@50<br>detector</span></div></div>
+        <div class="metric" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><b>86.9%</b><span>top-1<br>NABirds</span></div></div>
+        <div class="metric" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><b>555</b><span>species<br>classified</span></div></div>
+        <div class="metric" data-lg="card"><span class="lg-rim"></span><div class="lg-content"><b>0.97</b><span>AUC<br>welfare screen</span></div></div>
+      </div>
+
+      <div id="ornimetrics-links" class="link-row reveal"></div>
+    </section>
+
+    <!-- RESEARCH & OPEN SOURCE -->
+    <section id="research" class="band band-tight">
+      <div class="research-grid">
+        <article class="paper-card reveal" data-lg="card">
+          <span class="lg-rim"></span>
+          <div class="lg-content">
+            <span class="paper-venue">◆ CS &amp; IT Conference Proceedings · Vol 16</span>
+            <h3>Ornimetrics: Design and Evaluation of an AI-Enabled Smart Bird Feeder for Species Recognition, Waste Reduction, and Ecological Monitoring</h3>
+            <span class="paper-authors">Baichen Yu, Tyler Boulom — Woodbury University</span>
+            <p>A peer-reviewed study of an embedded-camera feeder using YOLOv11 recognition to
+              identify species, manage food distribution, and log behavioural data — reporting
+              detection performance and species-level waste analysis.</p>
+            <div id="paper-links" class="card-links"></div>
+          </div>
+        </article>
+        <article class="release-card reveal" style="--d:.1s" data-lg="card">
+          <span class="lg-rim"></span>
+          <div class="lg-content">
+            <span class="paper-venue" style="color:var(--teal)">⬡ Model release · ornimetrics-edge</span>
+            <h3>The edge model, public on Hugging Face</h3>
+            <div class="arch-list">
+              <div class="arch"><b>backbone</b> EfficientNetV2-S, shared multi-head pipeline</div>
+              <div class="arch"><b>detect</b> YOLOv11n — bird / squirrel / person / dog</div>
+              <div class="arch"><b>classify</b> 555 (NABirds) + 302 (iNaturalist)</div>
+              <div class="arch"><b>welfare</b> Mahalanobis anomaly screen</div>
+              <div class="arch"><b>re-id</b> ArcFace individual tracking</div>
+            </div>
+            <div id="release-links" class="card-links"></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FRC CATALYST -->
+    <section id="robotics" class="band">
+      <div class="band-head reveal">
+        <span class="kicker">Robotics · Open-source library</span>
+        <h2>FRC Catalyst</h2>
+        <p class="lead">A Java library for FIRST Robotics Competition teams. Competition-ready
+          mechanisms in a few builder calls — what used to take ~150 lines now takes about 8.</p>
+      </div>
+      <div class="catalyst">
+        <div class="catalyst-left reveal">
+          <div class="catalyst-stats">
+            <div class="cstat"><b>150→8</b><span>lines of boilerplate</span></div>
+            <div class="cstat"><b>7</b><span>mechanism builders</span></div>
+            <div class="cstat"><b>3</b><span>drivetrain subsystems</span></div>
+          </div>
+          <p class="lab-para">Built on Phoenix&nbsp;6 + WPILib&nbsp;2026. Every mechanism ships with
+            Motion&nbsp;Magic, gravity feedforward, simulation, telemetry, health monitoring, live
+            tuning and SysId — automatically. Ships with browser-based tuning &amp; docs tools.</p>
+          <div class="mech-grid">
+            <span class="mech">LinearMechanism</span><span class="mech">RotationalMechanism</span>
+            <span class="mech">FlywheelMechanism</span><span class="mech">RollerMechanism</span>
+            <span class="mech">WinchMechanism</span><span class="mech">ClawMechanism</span>
+            <span class="mech">PneumaticMechanism</span><span class="mech">SwerveSubsystem</span>
+            <span class="mech">VisionSubsystem</span><span class="mech">LEDSubsystem</span>
+          </div>
+          <div id="catalyst-links" class="card-links"></div>
+        </div>
+        <div class="catalyst-code reveal" data-lg="card">
+          <span class="lg-rim"></span>
+          <div class="lg-content">
+            <div class="code-head"><span class="code-dot r"></span><span class="code-dot y"></span><span class="code-dot g"></span> Elevator.java <span>FRC Catalyst</span></div>
+<pre class="code"><span class="c">// a full competition elevator — Motion Magic,</span>
+<span class="c">// feedforward, sim, telemetry, tuning included</span>
+<span class="k">var</span> elevator = <span class="t">LinearMechanism</span>.builder()
+    .<span class="m">motors</span>(<span class="s">9</span>, <span class="s">10</span>)
+    .<span class="m">gearing</span>(<span class="s">12.0</span>)
+    .<span class="m">drumRadius</span>(<span class="s">0.022</span>)
+    .<span class="m">softLimits</span>(<span class="s">0</span>, <span class="s">1.5</span>)
+    .<span class="m">motionMagic</span>(<span class="s">3.0</span>, <span class="s">6.0</span>)
+    .<span class="m">gravityFF</span>(<span class="s">0.35</span>)
+    .<span class="m">build</span>();
+
+elevator.<span class="m">goTo</span>(<span class="s">1.2</span>); <span class="c">// metres. done.</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="band">
+      <div class="band-head reveal">
+        <span class="kicker">Projects</span>
+        <h2>Other things I've built</h2>
+      </div>
+      <div id="projects-grid" class="projects-grid"></div>
+    </section>
+
+    <!-- BILIBILI CHANNEL (live) -->
+    <section id="channel" class="band">
+      <div class="band-head reveal">
+        <span class="kicker">Content</span>
+        <h2>TomAs测评 · Bilibili</h2>
+        <p class="lead">A high-school tech channel — hardware reviews and a daily tech-news brief,
+          part of it produced by an automated pipeline I built.</p>
+      </div>
+      <div id="bili" class="bili reveal">
+        <div class="bili-loading">Loading channel…</div>
+      </div>
+      <div id="channel-cta" class="center-cta reveal"></div>
+    </section>
+
+    <!-- TIMELINE -->
+    <section id="journey" class="band band-tight">
+      <div class="band-head reveal">
+        <span class="kicker">Highlights</span>
+        <h2>Selected milestones</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-item reveal"><span class="tl-dot"></span>
+          <div class="tl-when">Research</div><h3>Ornimetrics — peer-reviewed</h3>
+          <p>Published in the CS &amp; IT Conference Proceedings, Vol 16, with co-author Tyler Boulom (Woodbury University).</p></div>
+        <div class="tl-item reveal" style="--d:.08s"><span class="tl-dot"></span>
+          <div class="tl-when">Open source</div><h3>ornimetrics-edge released</h3>
+          <p>The full detection → species → welfare → re-ID pipeline, packaged for the Raspberry Pi 5 + Hailo-8 and published on Hugging Face.</p></div>
+        <div class="tl-item reveal" style="--d:.16s"><span class="tl-dot"></span>
+          <div class="tl-when">Robotics</div><h3>FRC Catalyst v0.3.5</h3>
+          <p>A Java mechanism library for FRC teams on Phoenix 6 + WPILib 2026, with a browser-based tuning and docs suite.</p></div>
+        <div class="tl-item reveal" style="--d:.24s"><span class="tl-dot"></span>
+          <div class="tl-when">Platforms</div><h3>SparkHub &amp; the homelab</h3>
+          <p>Founded a student-built learning platform with a web LMS, and run a 12+ service self-hosted homelab.</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="band band-contact">
+      <div class="contact-card reveal" data-lg="card">
+        <span class="lg-rim"></span>
+        <div class="lg-content">
+          <span class="kicker">Contact</span>
+          <h2>Get in touch</h2>
+          <p class="lead">Research, robotics, SparkHub, or collaboration — I'd be glad to talk.</p>
+          <div id="contact-actions" class="contact-actions"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>© <span id="yr"></span> Thomas Yu</span>
+    <span class="foot-mid">Self-hosted · Liquid Engine + Three.js</span>
+    <span>美高科技区 · TomAs测评</span>
+  </footer>
+
+  <script src="liquid-engine.js"></script>
+  <script type="module" src="three-field.js"></script>
+  <script src="site.js"></script>
+</body>
+</html>

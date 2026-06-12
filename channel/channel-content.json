@@ -1,0 +1,47 @@
+{
+  "_readme": "EDIT THIS FILE to update the channel page — about text, collab email, upcoming videos, membership perks, sponsors. It is NEVER overwritten by the auto-fetcher (that only writes bili.json). After editing, no rebuild needed; just save it in place on the server.",
+
+  "about": {
+    "headline": "Tech, tested by a high-schooler.",
+    "body": [
+      "TomAs测评 is a 美高 (US high-school) tech channel. I review the hardware I actually use — phones, chips, laptops and AI gadgets — and cut through the noise on what's worth your money.",
+      "Alongside in-depth reviews I run 每日科技速报, a daily tech-news brief that keeps you current in a few minutes. New videos every week."
+    ],
+    "creator": "Run by Thomas (Baichen) Yu — also a CS researcher and developer. Honest takes, no fluff."
+  },
+
+  "collab": {
+    "email": "yu_thomas1226@outlook.com",
+    "note": "Open to sponsorships, product reviews, and collaborations. Brands and fellow creators welcome — let's make something good."
+  },
+
+  "upcoming": [
+    { "title": "iPhone 17 Pro — the long-term review", "eta": "Coming soon", "tag": "Review",
+      "note": "Living with it for a month: camera, battery, the stuff reviews miss." },
+    { "title": "每日科技速报 — daily tech news", "eta": "Every day", "tag": "News",
+      "note": "The day's biggest tech stories in a tight few minutes." },
+    { "title": "Best budget AI gadgets of 2026", "eta": "In production", "tag": "Roundup",
+      "note": "What's actually useful vs. hype — tested." }
+  ],
+
+  "membership": {
+    "note": "Support the channel through Bilibili 充电 — it goes straight into better gear and more videos. Every bit genuinely helps.",
+    "cta": "Support on Bilibili",
+    "tiers": [
+      { "name": "充电 Supporter", "price": "¥5+ / mo",
+        "perks": ["Your name in the video credits", "Supporter badge in comments", "My genuine thanks 🙏"] },
+      { "name": "Early Access", "price": "¥15+ / mo", "featured": true,
+        "perks": ["Videos a few days early", "Behind-the-scenes notes", "Vote on what I review next"] },
+      { "name": "Inner Circle", "price": "¥30+ / mo",
+        "perks": ["Everything in Early Access", "Direct Q&A access", "A shoutout in a video"] }
+    ]
+  },
+
+  "sponsors": {
+    "note": "Brands I partner with — and a space for yours.",
+    "list": [
+      { "name": "Your brand here", "url": "mailto:yu_thomas1226@outlook.com",
+        "blurb": "Sponsor a video or a series and reach a focused, tech-savvy audience. Get in touch." }
+    ]
+  }
+}

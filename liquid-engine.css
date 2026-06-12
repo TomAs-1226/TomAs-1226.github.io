@@ -1,0 +1,298 @@
+/* ============================================================
+ *  LIQUID ENGINE — styles. The material is built from layers:
+ *  refraction (engine backdrop-filter) + specular rim (here) +
+ *  adaptive shadow. NO opacity tuning anywhere: the glass body
+ *  is fully transparent; everything you see is bent light.
+ * ============================================================ */
+:root {
+  --lg-radius: 18px;
+  --lg-ink: #f3f6f8;
+  --lg-ink-dim: rgba(243, 246, 248, 0.6);
+  --lg-shadow: 0 12px 32px rgba(0, 0, 0, 0.35), 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+html[data-tone='light'] {
+  --lg-ink: #16191c;
+  --lg-ink-dim: rgba(22, 25, 28, 0.55);
+  --lg-shadow: 0 12px 32px rgba(20, 30, 50, 0.18), 0 2px 8px rgba(20, 30, 50, 0.12);
+}
+
+/* ---------------- the material ---------------- */
+.lg-glass {
+  position: relative;
+  border: none;
+  border-radius: var(--lg-radius);
+  background: transparent;            /* zero opacity tricks */
+  box-shadow: var(--lg-shadow);
+  color: var(--lg-ink);
+  isolation: isolate;
+  transition: scale 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+}
+.lg-glass:active:not(.lg-thumb):not(.lg-knob):not(.lg-pill):not(.lg-modal):not(.lg-track) { scale: 0.965; }
+
+/* fallback for non-Chromium: honest frosted glass */
+.lg-frost-fallback {
+  backdrop-filter: blur(16px) saturate(1.6) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.6) !important;
+}
+
+/* specular rim — each element's --ang/--li/--hx/--hy come from the
+   Light Engine: rims point at their nearest light and brighten near it */
+.lg-glass { --ang: 135deg; --li: 0.6; --hx: 30%; --hy: 20%; --lc: 255 255 255; }
+:root { --rimb: 1.18; }                       /* dark glass: hotter rims */
+html[data-tone='light'] { --rimb: 0.92; }     /* light glass: subtler */
+.lg-rim {
+  pointer-events: none;
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  z-index: 1;
+  padding: 1.3px;
+  background:
+    linear-gradient(var(--ang),
+      rgb(var(--lc) / calc(0.95 * var(--li) * var(--rimb))) 0%,
+      rgb(var(--lc) / calc(0.22 * var(--li) * var(--rimb))) 26%,
+      rgb(var(--lc) / 0.06) 50%,
+      rgb(var(--lc) / calc(0.26 * var(--li) * var(--rimb))) 76%,
+      rgb(var(--lc) / calc(0.7 * var(--li) * var(--rimb))) 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask-composite: exclude;
+}
+.lg-rim::before {
+  /* second, soft inner rim: glass thickness */
+  content: '';
+  position: absolute; inset: 1.5px;
+  border-radius: inherit;
+  box-shadow:
+    inset 0 1px 0 rgb(var(--lc) / calc(0.35 * var(--li) * var(--rimb))),
+    inset 0 -1px 0 rgb(var(--lc) / calc(0.10 * var(--li))),
+    inset 0 10px 22px -12px rgb(var(--lc) / calc(0.28 * var(--li) * var(--rimb)));
+}
+.lg-rim::after {
+  /* hotspot glow exactly under the light source */
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(130px 100px at var(--hx) var(--hy),
+    rgb(var(--lc) / calc(0.22 * var(--li) * var(--rimb))), transparent 70%);
+}
+.lg-content { position: relative; z-index: 2; }
+
+/* ---------------- button ---------------- */
+.lg-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 0 24px;
+  font: 600 15px/1 -apple-system, 'SF Pro Text', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.015em;
+  cursor: pointer;
+  border-radius: 23px;
+  user-select: none;
+  overflow: hidden;
+}
+.lg-btn .lg-content {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+.lg-btn::before {
+  /* top sheen band: the look of thick curved glass */
+  content: '';
+  position: absolute; left: 8%; right: 8%; top: 7%; height: 42%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(255,255,255, calc(0.30 * var(--li))), rgba(255,255,255,0));
+  pointer-events: none;
+}
+.lg-btn:hover { box-shadow: var(--lg-shadow), 0 0 22px rgba(255, 255, 255, 0.10); }
+.lg-btn:hover .lg-rim::after { background: radial-gradient(150px 110px at var(--hx) var(--hy), rgba(255,255,255, calc(0.34 * var(--li))), transparent 70%); }
+.lg-btn.lg-small { min-height: 34px; padding: 0 14px; border-radius: 17px; font-size: 13px; }
+.lg-btn.lg-tint-blue .lg-content { color: #9ecbff; }
+.lg-btn.lg-tint-red .lg-content { color: #ff9e9e; }
+.lg-btn.lg-tint-green .lg-content { color: #9effb9; }
+
+/* ---------------- toggle ---------------- */
+.lg-toggle {
+  width: 64px; height: 36px;
+  border-radius: 18px;
+  cursor: pointer;
+  display: inline-block;
+}
+.lg-knob {
+  position: absolute; z-index: 2;
+  top: 3px; left: 3px;
+  width: 30px; height: 30px;
+  border-radius: 15px;
+  background: transparent;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.5);
+  transition: transform 0.28s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+.lg-knob::after {
+  /* tiny specular dot riding the knob */
+  content: '';
+  position: absolute; left: 22%; top: 16%;
+  width: 34%; height: 26%;
+  border-radius: 50%;
+  background: radial-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0));
+}
+.lg-toggle::before {
+  /* tinted glass fill swells in behind the knob when ON */
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(80, 180, 255, 0.45), rgba(120, 210, 255, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.lg-toggle.on::before { opacity: 1; }
+.lg-toggle.on .lg-knob { transform: translateX(28px); }
+.lg-knob.stretch { animation: lg-stretch 0.26s ease; }
+@keyframes lg-stretch {
+  35% { border-radius: 15px / 12px; scale: 1.35 0.85; }
+}
+.lg-toggle.on { box-shadow: var(--lg-shadow), 0 0 22px rgba(110, 200, 255, 0.4); }
+.lg-toggle.on .lg-rim { background:
+  linear-gradient(var(--ang),
+    rgba(150, 215, 255, calc(1.0 * var(--li))) 0%, rgba(150, 215, 255, 0.22) 30%,
+    rgba(150, 215, 255, 0.1) 55%, rgba(150, 215, 255, calc(0.8 * var(--li))) 100%);
+}
+
+/* ---------------- slider ---------------- */
+.lg-slider { position: relative; height: 44px; --v: 0.5; touch-action: none; cursor: pointer; }
+.lg-track {
+  position: absolute; left: 0; right: 0; top: 50%;
+  height: 14px; transform: translateY(-50%);
+  border-radius: 7px;
+  overflow: hidden;
+}
+.lg-fill {
+  position: absolute; left: 0; top: 0; bottom: 0;
+  width: calc(var(--v) * 100%);
+  background: linear-gradient(90deg, rgba(120, 200, 255, 0.55), rgba(160, 230, 255, 0.75));
+  border-radius: inherit;
+}
+.lg-thumb {
+  --stretch: 1;
+  position: absolute; z-index: 2;
+  top: 50%; left: calc(var(--v) * 100%);
+  width: calc(32px * var(--stretch));
+  height: calc(32px - (var(--stretch) - 1) * 7px);
+  transform: translate(-50%, -50%);   /* sacred: nothing may override this */
+  border-radius: 999px;               /* circle at rest, pill when stretched */
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 1px rgba(255,255,255,0.55);
+  transition: width 0.16s cubic-bezier(0.3, 1, 0.4, 1), height 0.16s cubic-bezier(0.3, 1, 0.4, 1);
+}
+.lg-slider.settle .lg-thumb {
+  /* springy snap back to a circle when you stop */
+  transition: width 0.32s cubic-bezier(0.34, 1.65, 0.5, 1), height 0.32s cubic-bezier(0.34, 1.65, 0.5, 1);
+}
+.lg-thumb::after {
+  content: '';
+  position: absolute; left: 20%; top: 14%;
+  width: 38%; height: 28%;
+  border-radius: 50%;
+  background: radial-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0));
+}
+/* (stretch is velocity-driven from JS via --stretch; no scale, no transform) */
+
+/* ---------------- segmented ---------------- */
+.lg-seg {
+  display: inline-flex; gap: 2px; padding: 4px;
+  border-radius: 21px;
+}
+.lg-pill {
+  position: absolute; z-index: 1;
+  top: 4px; bottom: 4px; left: 0;
+  border-radius: 17px;
+  transition: transform 0.32s cubic-bezier(0.34, 1.3, 0.64, 1), width 0.32s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+.lg-seg-item {
+  position: relative; z-index: 2;
+  background: none; border: none;
+  color: var(--lg-ink-dim);
+  font: 600 13.5px/1 -apple-system, 'Segoe UI', system-ui, sans-serif;
+  padding: 9px 18px; cursor: pointer;
+  transition: color 0.25s ease;
+}
+.lg-seg-item.on { color: var(--lg-ink); }
+
+/* ---------------- card ---------------- */
+.lg-card { padding: 0; }
+.lg-card > .lg-content { padding: 22px 24px; }
+.lg-card h3 { margin: 0 0 6px; font: 700 17px/1.3 -apple-system, 'Segoe UI', sans-serif; }
+.lg-card p { margin: 0; color: var(--lg-ink-dim); font: 400 14px/1.55 -apple-system, 'Segoe UI', sans-serif; }
+
+/* ---------------- input ---------------- */
+.lg-input { display: flex; border-radius: 14px; }
+.lg-input input {
+  flex: 1; background: none; border: none; outline: none;
+  color: var(--lg-ink);
+  font: 500 15px/1 -apple-system, 'Segoe UI', sans-serif;
+  padding: 14px 18px;
+}
+.lg-input input::placeholder { color: var(--lg-ink-dim); }
+.lg-input:focus-within { box-shadow: var(--lg-shadow), 0 0 0 2px rgba(140, 210, 255, 0.45); }
+
+/* ---------------- progress ---------------- */
+.lg-progress { height: 16px; border-radius: 8px; --v: 0.4; overflow: hidden; }
+.lg-bar {
+  position: absolute; left: 0; top: 0; bottom: 0; z-index: 2;
+  width: calc(var(--v) * 100%);
+  border-radius: inherit;
+  background: linear-gradient(90deg, rgba(120, 200, 255, 0.5), rgba(180, 235, 255, 0.8));
+  transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------- checkbox ---------------- */
+.lg-check { display: inline-flex; align-items: center; gap: 11px; cursor: pointer; user-select: none; }
+.lg-box { width: 26px; height: 26px; border-radius: 8px; position: relative; display: inline-block; }
+.lg-tick {
+  position: absolute; inset: 0; z-index: 2;
+  display: grid; place-items: center;
+  color: #aee3ff; font-size: 15px; font-weight: 800;
+  opacity: 0; scale: 0.4;
+  transition: opacity 0.18s ease, scale 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lg-check.on .lg-tick { opacity: 1; scale: 1; }
+.lg-check-label { font: 500 14.5px/1 -apple-system, 'Segoe UI', sans-serif; color: var(--lg-ink); }
+
+/* ---------------- dock ---------------- */
+.lg-dock {
+  display: inline-flex; gap: 6px; align-items: flex-end;
+  padding: 10px 14px;
+  border-radius: 26px;
+}
+.lg-dock-item {
+  --mag: 1;
+  position: relative; z-index: 2;
+  background: none; border: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center;
+  transition: transform 0.12s ease;
+  transform: scale(var(--mag)) translateY(calc((1 - var(--mag)) * 8px));
+  transform-origin: bottom center;
+}
+.lg-dock-emoji { font-size: 38px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.35)); }
+.lg-dock-label {
+  font: 500 10px/1 -apple-system, 'Segoe UI', sans-serif;
+  color: var(--lg-ink-dim); margin-top: 3px;
+  opacity: 0; transition: opacity 0.15s;
+}
+.lg-dock-item:hover .lg-dock-label { opacity: 1; }
+
+/* ---------------- modal ---------------- */
+.lg-modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: grid; place-items: center;
+  background: rgba(0, 0, 0, 0);
+  transition: background 0.3s ease;
+}
+.lg-modal-overlay.show { background: rgba(0, 0, 0, 0.3); }
+.lg-modal {
+  width: min(420px, 88vw);
+  border-radius: 26px;
+  transform: scale(0.92) translateY(14px);
+  opacity: 0;
+  transition: transform 0.35s cubic-bezier(0.34, 1.3, 0.64, 1), opacity 0.25s ease;
+}
+.lg-modal-overlay.show .lg-modal { transform: none; opacity: 1; }
+.lg-modal .lg-content { padding: 26px 28px; display: flex; flex-direction: column; gap: 12px; }
+.lg-modal h3 { margin: 0; font: 700 19px/1.3 -apple-system, 'Segoe UI', sans-serif; }
+.lg-modal p { margin: 0; color: var(--lg-ink-dim); font: 400 14px/1.6 -apple-system, 'Segoe UI', sans-serif; }

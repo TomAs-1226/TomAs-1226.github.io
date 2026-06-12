@@ -1,0 +1,10 @@
+# server-only files — never published to GitHub Pages
+.claude/
+bili_fetch.py
+*.service
+*.timer
+*.nginx.conf
+thomas-site.nginx.conf
+*.log
+bili.json.tmp
+MEMORY*.md
