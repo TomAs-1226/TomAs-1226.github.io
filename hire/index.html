@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Thomas Yu — Websites for South OC Businesses</title>
+<meta name="description" content="Websites for small businesses in Mission Viejo and south Orange County. Built by a local student developer. $350–$850, live in about a week." />
+<style>
+  :root{
+    --bg:#ffffff; --panel:#f7f8fa; --line:#e4e7ec;
+    --ink:#14181f; --muted:#5b6472; --accent:#1d4ed8; --accent-soft:#eff4ff;
+    --radius:14px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --bg:#0e1116; --panel:#161b23; --line:#262d38;
+           --ink:#eef1f6; --muted:#9aa5b4; --accent:#6f9bff; --accent-soft:#16233d; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:720px;margin:0 auto;padding:0 20px}
+  a{color:var(--accent)}
+
+  header{padding:56px 0 40px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
+  h1{font-size:clamp(28px,5.5vw,40px);line-height:1.15;margin:0 0 16px;letter-spacing:-.02em}
+  .lede{font-size:clamp(17px,2.5vw,19px);color:var(--muted);margin:0 0 26px;max-width:56ch}
+  .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;
+    padding:13px 24px;border-radius:10px;font-weight:600}
+  .cta-note{font-size:14px;color:var(--muted);margin:14px 0 0}
+
+  section{padding:44px 0;border-bottom:1px solid var(--line)}
+  h2{font-size:21px;margin:0 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--muted);margin:0 0 24px;font-size:15px}
+
+  .tiers{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:640px){.tiers{grid-template-columns:repeat(3,1fr)}}
+  .tier{border:1px solid var(--line);border-radius:var(--radius);padding:20px;background:var(--panel)}
+  .tier.pick{border-color:var(--accent);background:var(--accent-soft)}
+  .tier h3{margin:0 0 4px;font-size:15px}
+  .price{font-size:27px;font-weight:700;letter-spacing:-.02em;margin:0 0 10px}
+  .tier ul{margin:0;padding-left:17px;font-size:14px;color:var(--muted);line-height:1.6}
+  .tag{display:inline-block;font-size:11px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--accent);font-weight:700;margin:0 0 8px}
+
+  .incl{display:grid;gap:8px 22px;grid-template-columns:1fr;margin:22px 0 0;padding:0;list-style:none;font-size:15px}
+  @media(min-width:560px){.incl{grid-template-columns:1fr 1fr}}
+  .incl li{padding-left:22px;position:relative;color:var(--muted)}
+  .incl li::before{content:"";position:absolute;left:4px;top:.62em;width:6px;height:6px;
+    border-radius:50%;background:var(--accent)}
+
+  .work{display:grid;gap:14px}
+  .item{border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;background:var(--panel)}
+  .item h3{margin:0 0 5px;font-size:16px}
+  .item p{margin:0;color:var(--muted);font-size:15px}
+
+  ol.steps{margin:0;padding-left:20px}
+  ol.steps li{margin-bottom:11px}
+  ol.steps b{font-weight:650}
+
+  .faq{margin-top:6px}
+  .faq h3{margin:22px 0 5px;font-size:16px}
+  .faq p{margin:0;color:var(--muted);font-size:15px}
+
+  .final{padding:48px 0 64px;text-align:center}
+  .final h2{font-size:24px;margin-bottom:10px}
+  .final p{color:var(--muted);max-width:44ch;margin:0 auto 24px}
+  footer{padding:0 0 48px;text-align:center;color:var(--muted);font-size:14px}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">Mission Viejo, California</p>
+  <h1>I build websites for small businesses in south Orange County.</h1>
+  <p class="lede">I'm Thomas — a high school student here in Mission Viejo, and a published
+    software researcher. A clean, fast site that works properly on phones, live in about a week,
+    for a fraction of what an agency charges.</p>
+  <a class="cta" href="mailto:yu_thomas1226@outlook.com?subject=Website%20for%20my%20business">Email me</a>
+  <p class="cta-note">Or ask for a free mockup of your homepage first — no cost, no commitment.</p>
+</header>
+
+<section>
+  <h2>Pricing</h2>
+  <p class="sub">Flat rate. Half up front, half when the site goes live. No monthly fees to me.</p>
+
+  <div class="tiers">
+    <div class="tier">
+      <h3>Essentials</h3>
+      <p class="price">$350</p>
+      <ul><li>3 pages</li><li>Home, services, contact</li><li>About a week</li></ul>
+    </div>
+    <div class="tier pick">
+      <span class="tag">Most common</span>
+      <h3>Standard</h3>
+      <p class="price">$550</p>
+      <ul><li>5 pages</li><li>Adds about &amp; photo gallery</li><li>About a week</li></ul>
+    </div>
+    <div class="tier">
+      <h3>Complete</h3>
+      <p class="price">$850</p>
+      <ul><li>5 pages</li><li>Booking or quote form</li><li>Custom automation</li></ul>
+    </div>
+  </div>
+
+  <ul class="incl">
+    <li>Works properly on phones</li>
+    <li>Contact form that emails you directly</li>
+    <li>Your Google Maps location</li>
+    <li>Your photos, cleaned up</li>
+    <li>Set up to show in local search</li>
+    <li>Loads fast, no bloat</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why I'm this inexpensive</h2>
+  <p class="sub">Because I'm still in school, and this is not the hard part of what I do.</p>
+  <div class="work">
+    <div class="item">
+      <h3>Published AI research</h3>
+      <p>I built and published <b>Ornimetrics</b>, a computer vision system that identifies 555 bird
+        species from camera footage and runs entirely on a device the size of a paperback. It's
+        peer-reviewed and published in the CS &amp; IT Conference Proceedings.</p>
+    </div>
+    <div class="item">
+      <h3>Software other people rely on</h3>
+      <p>I build <b>FRC Catalyst</b>, an open-source robotics library used by competitive robotics
+        teams, and founded <b>SparkHub</b>, a student learning platform.</p>
+    </div>
+    <div class="item">
+      <h3>I run my own servers</h3>
+      <p>A dozen services on hardware in my house, including the one serving my portfolio site. If
+        something breaks on your site at 9pm, I'm not filing a ticket with a host — I just fix it.</p>
+    </div>
+  </div>
+  <ul class="incl" style="margin-top:22px">
+    <li><a href="https://tomas-1226.github.io">See my full portfolio →</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><b>You email me.</b> Tell me what your business does. That's all I need to start.</li>
+    <li><b>I build a free mockup of your homepage.</b> Takes me a couple of days. You see exactly
+      what you'd be getting before you spend a dollar.</li>
+    <li><b>If you like it, we go.</b> Half up front, and I need your photos, hours, and the services
+      you want listed. Rough is fine — I'll clean it up.</li>
+    <li><b>About a week later it's live.</b> You pay the other half. Two rounds of changes included,
+      and I'm not going to nickel and dime you over a third.</li>
+  </ol>
+</section>
+
+<section class="faq">
+  <h2>Questions people ask</h2>
+
+  <h3>Why is this a fifth of what everyone else quotes?</h3>
+  <p>Agencies around here charge $3,000 to $8,000 because they have offices, salespeople, and
+    project managers. I'm a student working from home who wants real projects to show. You're
+    getting the build without the overhead.</p>
+
+  <h3>What happens if I don't like the mockup?</h3>
+  <p>Nothing. You don't pay me, you don't owe me anything, and I move on. That's the entire point of
+    doing it first.</p>
+
+  <h3>Are there ongoing costs?</h3>
+  <p>Not to me. You'll pay for a domain name and hosting directly, usually $15–20 a month, and it
+    stays in your name. If you already have a domain, we'll just use it.</p>
+
+  <h3>Do I own the site?</h3>
+  <p>Yes. Domain, hosting, and files are all in your name. If you ever want to move to someone else,
+    nothing is locked up.</p>
+
+  <h3>You're in high school — what if you get busy?</h3>
+  <p>Fair question. It's why I only take a couple of projects at a time, and why the timeline is a
+    week rather than a month. If I can't do it, I'll tell you before you've paid anything.</p>
+</section>
+
+<div class="final">
+  <h2>Want to see what yours would look like?</h2>
+  <p>Free homepage mockup, a couple of days, no commitment either way.</p>
+  <a class="cta" href="mailto:yu_thomas1226@outlook.com?subject=Free%20mockup%20request">Email me</a>
+</div>
+
+<footer>
+  Thomas Yu · Mission Viejo, CA · <a href="mailto:yu_thomas1226@outlook.com">yu_thomas1226@outlook.com</a><br>
+  <a href="https://tomas-1226.github.io">tomas-1226.github.io</a>
+</footer>
+
+</div>
+</body>
+</html>
