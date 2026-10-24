@@ -8,3 +8,4 @@ thomas-site.nginx.conf
 *.log
 bili.json.tmp
 MEMORY*.md
+node_modules/

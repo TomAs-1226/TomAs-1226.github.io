@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>COMU · Thomas Yu</title>
+<meta name="description" content="COMU, the AI front desk Thomas Yu built for the Wetlands & Wildlife Care Center of Orange County: four fine-tuned Qwen3.5-9B specialists, photo species ID, and zero hallucinated phone numbers." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="COMU · Thomas Yu" />
+<meta property="og:description" content="An AI front desk for wildlife rescue: four fine-tuned specialists, photo ID, and no invented phone numbers." />
+<meta property="og:image" content="https://tomas-1226.github.io/img/comu/comu-murre.webp" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
+</head>
+<body class="theme-comu">
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/">Thomas Yu</a>
+    <nav class="nav-links" aria-label="Pages">
+      <a href="/ornimetrics/">Ornimetrics</a>
+      <a href="/comu/">COMU</a>
+      <a href="/catalyst/">Catalyst</a>
+      <a href="/robotics/">Robotics</a>
+      <a href="/hardware/">Hardware</a>
+      <a href="/channel/">Channel</a>
+    </nav>
+    <button class="kbar-btn" type="button" data-kbar aria-label="Search the site">Search <kbd>⌘K</kbd></button>
+    <a class="nav-mail" href="/#contact">Contact</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+  <div class="nav-sheet" id="sheet">
+    <a href="/ornimetrics/">Ornimetrics</a>
+    <a href="/comu/">COMU</a>
+    <a href="/catalyst/">Catalyst</a>
+    <a href="/robotics/">Robotics</a>
+    <a href="/hardware/">Hardware</a>
+    <a href="/channel/">Channel</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero wrap">
+    <a class="crumb" href="/">← Thomas Yu</a>
+    <h1 class="page-title">COMU</h1>
+    <div class="hero-row">
+      <p class="page-lede">
+        An AI front desk for wildlife rescue. Someone finds a hurt animal; COMU asks what it is,
+        what's wrong and where they are, then gives safe next steps or the right number to call.
+      </p>
+      <dl class="hero-facts">
+        <div><dt>Built for</dt><dd>Wetlands &amp; Wildlife Care Center of Orange County</dd></div>
+        <div><dt>My role</dt><dd>Volunteer developer: design, training, the whole stack</dd></div>
+        <div><dt>Models</dt><dd>Four fine-tuned Qwen3.5-9B specialists</dd></div>
+        <div><dt>Name</dt><dd>After the Common Murre, a seabird</dd></div>
+      </dl>
+    </div>
+    <div class="comu-hero">
+      <figure class="comu-shot"><img src="/img/comu/widget.webp" alt="The COMU widget on a page styled for the Wetlands & Wildlife Care Center: 'Found an animal? Let's help it get the care it needs.' with an Ask COMU button" width="1440" height="640" /></figure>
+      <figure class="comu-avatar"><img src="/img/comu/comu-murre.webp" alt="A Common Murre on the water, COMU's avatar" /></figure>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="results">
+    <div class="sec-head">
+      <p class="sec-label">Results</p>
+      <h2>Beats the base model</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">
+        On 16 real triage cases from the care center, the fine-tuned specialists passed 62% to the
+        base model's 25%, and never once made up a phone number. The base model invented eight.
+      </p>
+      <dl class="figures">
+        <div><dt>0</dt><dd>hallucinated phone numbers (base model: 8)</dd></div>
+        <div><dt>62%</dt><dd>pass rate on real triage cases (base: 25%)</dd></div>
+        <div><dt>90.3%</dt><dd>right care group from a photo</dd></div>
+        <div><dt>381 ms</dt><dd>median time to identify a photo</dd></div>
+      </dl>
+
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">How it works</p>
+      <h2>Four specialists</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">A fallen nestling and a seal on the beach need different answers, so COMU is four models, not one.</p>
+      <div class="features features-3">
+        <div><h3>Four specialists</h3><p>Birds, mammals, reptiles, marine: one LoRA each, picked per request.</p></div>
+        <div><h3>Can't invent numbers</h3><p>Referrals come from a directory; a guardrail strips anything else mid-stream.</p></div>
+        <div><h3>Photo ID</h3><p>Send a picture, get the species and care group.</p></div>
+        <div><h3>Front-desk ready</h3><p>Emergency fast path, tap-to-call, voice, English and Spanish.</p></div>
+        <div><h3>Staff console</h3><p>Conversations, knowledge, referrals and a queue of unanswered questions.</p></div>
+        <div><h3>Runs anywhere</h3><p>FastAPI + LangGraph on llama.cpp; no database needed.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">Training</p>
+      <h2>Trained at home</h2>
+    </div>
+    <div class="sec-body">
+      <dl class="specs">
+        <div><dt>Base model</dt><dd>Qwen3.5-9B</dd></div>
+        <div><dt>Fine-tuning</dt><dd>Unsloth QLoRA, one adapter per specialist, on data grounded in the care center's own material</dd></div>
+        <div><dt>Serving</dt><dd>A Q4_K_M GGUF base with per-specialist LoRA GGUFs on llama-server</dd></div>
+        <div><dt>Backend</dt><dd>FastAPI, LangGraph, Postgres or a zero-setup JSON store</dd></div>
+        <div><dt>Front end</dt><dd>An embeddable chat widget and a staff admin console</dd></div>
+      </dl>
+      <p style="margin-top:28px">
+        It started from Ornimetrics: the same vision pipeline that recognises birds at the feeder
+        now helps the care center's rehabilitation staff log their observations.
+      </p>
+      <p class="links"><a href="/ornimetrics/">Ornimetrics</a></p>
+    </div>
+  </section>
+
+  <a class="next-page wrap" href="/catalyst/">
+    <div><span>Next</span><b>Catalyst</b></div><i>→</i>
+  </a>
+</main>
+
+<footer class="foot wrap">
+  <span>Thomas (Baichen) Yu</span>
+  <span>Orange County, California</span>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/motion.js" defer></script>
+</body>
+</html>

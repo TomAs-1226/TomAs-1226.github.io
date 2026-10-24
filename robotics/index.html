@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Robotics · Thomas Yu</title>
+<meta name="description" content="Thomas Yu on FRC Team 5805 SMbly Required: JV captain, then varsity lead programmer. The robots Genesis, Exodus, Leviticus and Numbers, and what the software does." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="Robotics · Thomas Yu" />
+<meta property="og:description" content="FRC Team 5805: four robots, two event wins, and the software behind them." />
+<meta property="og:image" content="https://tomas-1226.github.io/img/frc-match.webp" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/">Thomas Yu</a>
+    <nav class="nav-links" aria-label="Pages">
+      <a href="/ornimetrics/">Ornimetrics</a>
+      <a href="/comu/">COMU</a>
+      <a href="/catalyst/">Catalyst</a>
+      <a href="/robotics/">Robotics</a>
+      <a href="/hardware/">Hardware</a>
+      <a href="/channel/">Channel</a>
+    </nav>
+    <button class="kbar-btn" type="button" data-kbar aria-label="Search the site">Search <kbd>⌘K</kbd></button>
+    <a class="nav-mail" href="/#contact">Contact</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+  <div class="nav-sheet" id="sheet">
+    <a href="/ornimetrics/">Ornimetrics</a>
+    <a href="/comu/">COMU</a>
+    <a href="/catalyst/">Catalyst</a>
+    <a href="/robotics/">Robotics</a>
+    <a href="/hardware/">Hardware</a>
+    <a href="/channel/">Channel</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero wrap" style="padding-bottom:0">
+    <a class="crumb" href="/">← Thomas Yu</a>
+    <h1 class="page-title">Robotics</h1>
+    <div class="hero-row">
+      <p class="page-lede">
+        FRC Team 5805, SMbly Required, at Santa Margarita Catholic High School. I joined as a
+        freshman, captained the JV team in 10th grade, and have led varsity programming since.
+      </p>
+      <dl class="hero-facts">
+        <div><dt>Role</dt><dd>Lead programmer (11th, 12th) · JV captain (10th)</dd></div>
+        <div><dt>Robots</dt><dd>Genesis, Exodus, Leviticus, Numbers</dd></div>
+        <div><dt>Wins</dt><dd>Ventura County Regional 2025 · Beach Blitz 2025</dd></div>
+        <div><dt>Team site</dt><dd><a href="https://frc5805.com" target="_blank" rel="noopener">frc5805.com</a>, which I built</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec sec-wide" style="margin-top:clamp(48px,7vw,88px)">
+    <figure class="bleed">
+      <img src="/img/frc-match.webp" alt="Team 5805's robot collecting balls on the field during a 2026 REBUILT match" width="1700" height="956" />
+      <figcaption class="wrap">On the field during the 2026 season (REBUILT).</figcaption>
+    </figure>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">What I do</p>
+      <h2>The software</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">Drivetrain, every mechanism, the autos, and the vision that tells the robot where it is.</p>
+      <p>I ported our AprilTag localisation from Python to C++, built autos in PathPlanner and Choreo, and turned what we kept rewriting into <a href="/catalyst/" style="color:var(--accent)">Catalyst</a>.</p>
+      <dl class="results" style="margin-top:32px">
+        <div><dt>2026</dt><dd>Port Hueneme District Event, finalist</dd></div>
+        <div><dt>2026</dt><dd>Orange County District Event, playoffs</dd></div>
+        <div><dt>2026</dt><dd>FIRST California Southern State Championship</dd></div>
+        <div><dt>2025</dt><dd>Ventura County Regional, winner</dd></div>
+        <div><dt>2025</dt><dd>Beach Blitz, winner</dd></div>
+        <div><dt>2025</dt><dd>SoCal Showdown, finalist</dd></div>
+      </dl>
+      <p class="small" style="margin-top:12px">Event record from The Blue Alliance.</p>
+    </div>
+  </section>
+
+  <section class="scrolly" id="numbers" data-scrolly="numbers" aria-label="Numbers, Team 5805's 2026 offseason robot, taken apart as you scroll">
+    <div class="scrolly-stage"><canvas aria-hidden="true"></canvas><div class="scrolly-labels"></div></div>
+    <div class="scrolly-panels">
+      <div class="scrolly-panel" data-shot="title">
+        <div class="scrolly-box">
+          <p class="sec-label">Book IV · 2026 offseason</p>
+          <h3>Numbers</h3>
+          <p>Our build of Team 581's REBUILT design, and the first competition robot on Catalyst 2.0 for FIRST's new Systemcore controller. It debuted at SoCal Showdown in October 2026.</p>
+          <p class="small">Scroll, and it comes apart.</p>
+        </div>
+      </div>
+      <div class="scrolly-panel" data-shot="shooter" data-side="right">
+        <div class="scrolly-box">
+          <p class="sec-label">Shooter</p>
+          <h3>Four Krakens, one flywheel</h3>
+          <p>A 4 in stainless flywheel spun by four Kraken X60s, with a hood that aims from 13 to 45°. It shoots out of the back of the robot.</p>
+          <ul>
+            <li data-anchor="flywheel"><b>Flywheel</b><span>4 × Kraken X60</span></li>
+            <li data-anchor="hood"><b>Hood</b><span>13–45°</span></li>
+            <li data-anchor="feeder"><b>Feeder</b><span>three rollers</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="scrolly-panel" data-shot="apart">
+        <div class="scrolly-box">
+          <p class="sec-label">Teardown</p>
+          <h3>Six assemblies</h3>
+          <p>Hood, shooter, intake, hopper, floor and drive base, lifted off in the order the bolts come out. The model is the robot's own CAD.</p>
+        </div>
+      </div>
+      <div class="scrolly-panel" data-shot="intake" data-side="right">
+        <div class="scrolly-box">
+          <p class="sec-label">Intake</p>
+          <h3>Out 300 mm</h3>
+          <p>The hopper slides out 300&nbsp;mm with the intake on its front, and holds about 60 balls.</p>
+          <ul>
+            <li data-anchor="intake"><b>Intake</b><span>on the hopper's slide</span></li>
+            <li data-anchor="hopper"><b>Hopper</b><span>about 60 balls</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="scrolly-panel" data-shot="drive">
+        <div class="scrolly-box">
+          <p class="sec-label">Drive base</p>
+          <h3>Swerve, from above</h3>
+          <p>Four swerve modules, the battery and the power distribution, with everything above them lifted away.</p>
+          <ul>
+            <li data-anchor="swerve"><b>Swerve</b><span>four modules</span></li>
+            <li data-anchor="battery"><b>Battery</b><span>12 V</span></li>
+            <li data-anchor="pdp"><b>Power</b><span>PDP 2.0</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="scrolly-panel" data-shot="code" data-side="right">
+        <div class="scrolly-box">
+          <p class="sec-label">Code</p>
+          <h3>Written on Catalyst</h3>
+          <p>Every mechanism on Numbers is a Catalyst builder, running on Systemcore with WPILib 2027.</p>
+          <p class="links" style="margin-top:14px !important"><a href="/catalyst/">The library</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="robots" style="display:block">
+    <div class="sec-head" style="position:static;margin-bottom:clamp(40px,6vw,72px)">
+      <p class="sec-label">The robots</p>
+      <h2>The ones before</h2>
+      <p class="note" style="max-width:52ch;margin-top:14px">Since 2025 each robot is named for a Book of the Bible. Drag the models to turn them any way you like.</p>
+    </div>
+    <div class="robots">
+      <article class="robot">
+        <div class="photo">
+          <img src="/img/leviticus.webp" alt="Leviticus, Team 5805's 2026 robot, on the carpet" loading="lazy" width="1600" height="900" />
+        </div>
+        <div>
+          <p class="robot-meta">Book III · 2026 season · REBUILT</p>
+          <h3>Leviticus</h3>
+          <p>A big-dumper, three-and-a-half-ball-wide shooter spun by four Kraken X60s, fed by a slapdown intake with an extendable hopper. Finalist at Port Hueneme and semi-finalist for the Orange County Leadership Award. Disassembled in September 2026 for parts.</p>
+          <dl class="specs">
+            <div><dt>Scoring</dt><dd>3.5-ball-wide shooter</dd></div>
+            <div><dt>Flywheels</dt><dd>4× Kraken X60</dd></div>
+            <div><dt>Intake</dt><dd>Slapdown with extendable hopper</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="robot">
+        <div>
+          <div class="stage" data-model="/models/exodus.glb" data-az="0.6" data-zoom="0.8">
+            <canvas aria-label="3D model of Exodus"></canvas>
+          </div>
+        </div>
+        <div>
+          <p class="robot-meta">Book II · 2025 offseason · REEFSCAPE</p>
+          <h3>Exodus</h3>
+          <p>The offseason breakout: a back-loaded cycler with a deep climb. Won Beach Blitz and made the final at SoCal Showdown. Its parts went into the robots after it.</p>
+          <dl class="specs">
+            <div><dt>Mechanism</dt><dd>Back-loaded cycler</dd></div>
+            <div><dt>Endgame</dt><dd>Deep climb</dd></div>
+          </dl>
+        </div>
+      </article>
+
+      <article class="robot">
+        <div>
+          <div class="stage" data-model="/models/genesis.glb" data-az="0.7" data-zoom="0.8">
+            <canvas aria-label="3D model of Genesis"></canvas>
+          </div>
+        </div>
+        <div>
+          <p class="robot-meta">Book I · 2025 season · REEFSCAPE</p>
+          <h3>Genesis</h3>
+          <p>An elevator-based, side-loaded cycler that climbed deep. Won the Ventura County Regional from the 49th seed, 5–0 in the playoffs. Decommissioned in September 2026.</p>
+          <dl class="specs">
+            <div><dt>Mechanism</dt><dd>Elevator, side-loaded cycler</dd></div>
+            <div><dt>Result</dt><dd>Ventura County Regional winner</dd></div>
+          </dl>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="sec wrap" style="display:block">
+    <div class="sec-head" style="position:static;margin-bottom:32px">
+      <p class="sec-label">Photos</p>
+      <h2>The team</h2>
+    </div>
+    <div class="gallery">
+      <figure class="g-wide"><img src="/img/team-numbers.webp" alt="Team 5805 with Numbers in the pit" loading="lazy" /><figcaption>The team with Numbers.</figcaption></figure>
+      <figure><img src="/img/robot-field.webp" alt="A 5805 robot queued at the field" loading="lazy" style="aspect-ratio:auto;height:100%;max-height:520px" /><figcaption>Queued and ready.</figcaption></figure>
+      <figure class="g-half"><img src="/img/ventura-2025.webp" alt="The winning alliance at the 2025 Ventura County Regional with the winner banners" loading="lazy" /><figcaption>Ventura County Regional, 2025.</figcaption></figure>
+      <figure class="g-half"><img src="/img/driver-station.webp" alt="The driver station laptop during the endgame" loading="lazy" /><figcaption>Driving in the endgame.</figcaption></figure>
+    </div>
+    <p class="small" style="margin-top:20px">Photos from Team 5805.</p>
+  </section>
+
+  <a class="next-page wrap" href="/hardware/">
+    <div><span>Next</span><b>Hardware</b></div><i>→</i>
+  </a>
+</main>
+
+<footer class="foot wrap">
+  <span>Thomas (Baichen) Yu</span>
+  <span>Orange County, California</span>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/motion.js" defer></script>
+<script type="module" src="/assets/stage.js"></script>
+<script type="module" src="/assets/scrolly.js"></script>
+</body>
+</html>

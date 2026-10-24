@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="FrcCatalyst">
+  <title>FrcCatalyst</title>
+
+  <!--
+    One idea, because this is rendered at 32px in a browser tab as often as at 512. An earlier draft
+    carried the banner's motion profile behind the mark; at icon sizes it stopped being a profile and
+    became a smudge crossing the bolt. The glow does the same job - depth without a second subject.
+  -->
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#191a20"/>
+      <stop offset="55%" stop-color="#101116"/>
+      <stop offset="100%" stop-color="#08090b"/>
+    </linearGradient>
+    <radialGradient id="pool" cx="26%" cy="20%" r="64%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#e94560" stop-opacity="0.30"/>
+      <stop offset="60%" stop-color="#e94560" stop-opacity="0.07"/>
+      <stop offset="100%" stop-color="#e94560" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- A squircle rather than a circle: this is an app icon as well as a docs logo, and the rounded
+       square is the shape both platforms already expect. -->
+  <rect width="512" height="512" rx="114" fill="url(#ground)"/>
+  <rect width="512" height="512" rx="114" fill="url(#pool)"/>
+  <circle cx="256" cy="256" r="196" fill="url(#glow)"/>
+
+  <!-- The mark, the one shape shared across the library, the app and the console. -->
+  <g transform="translate(88 88) scale(14)">
+    <path d="M13.5 2 5 13h5l-1.5 9L19 10h-5.5z" fill="#e94560"/>
+  </g>
+</svg>

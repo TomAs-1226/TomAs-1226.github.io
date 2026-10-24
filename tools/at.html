@@ -1,0 +1,10 @@
+<!doctype html><html><body style="margin:0;background:#000">
+<script>
+// ?p=/page/&sel=#suite -> one 1440x900 frame scrolled so the element's top is under the nav
+const q = new URLSearchParams(location.search);
+const f = document.createElement('iframe');
+f.style.cssText = 'border:0;width:1440px;height:' + (q.get('h') || 900) + 'px';
+f.src = q.get('p') || '/';
+f.onload = () => setTimeout(() => { const el = f.contentDocument.querySelector(q.get('sel')); if (el) f.contentWindow.scrollTo({ top: el.getBoundingClientRect().top + f.contentWindow.scrollY - 80, behavior: 'instant' }); }, 300);
+document.body.append(f);
+</script></body></html>

@@ -1,0 +1,12 @@
+<!doctype html><html><body style="margin:0;background:#333;display:flex;flex-wrap:wrap;gap:8px">
+<script>
+// ?p=/page/&y=0,900,1800  -> one 390x844 frame per scroll offset
+const q = new URLSearchParams(location.search), page = q.get('p') || '/', ys = (q.get('y') || '0').split(',').map(Number);
+for (const y of ys) {
+  const f = document.createElement('iframe');
+  f.style.cssText = 'border:0;width:390px;height:844px;background:#000';
+  f.src = page;
+  f.onload = () => setTimeout(() => { f.contentWindow.scrollTo({ top: y, behavior: 'instant' }); const c = q.get('click'); if (c) f.contentDocument.querySelector(c)?.click(); }, 300);
+  document.body.append(f);
+}
+</script></body></html>

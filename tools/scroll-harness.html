@@ -1,0 +1,18 @@
+<!doctype html><html><body style="margin:0;background:#000">
+<script>
+const page = new URLSearchParams(location.search).get('p') || '/robotics/';
+const n = Number(new URLSearchParams(location.search).get('n') || 6);
+const w = Number(new URLSearchParams(location.search).get('w') || 1440), h = Number(new URLSearchParams(location.search).get('h') || 900);
+for (let i = 0; i < n; i++) {
+  const f = document.createElement('iframe');
+  f.style.cssText = `display:inline-block;vertical-align:top;border:0;margin:0 6px 6px 0;width:${w}px;height:${h}px`;
+  f.src = page;
+  f.onload = () => {
+    const d = f.contentDocument, panels = d.querySelectorAll('.scrolly-panel');
+    const p = panels[i]; if (!p) return;
+    const r = p.getBoundingClientRect();
+    f.contentWindow.scrollTo({ top: r.top + f.contentWindow.scrollY + r.height / 2 - h / 2, behavior: 'instant' });
+  };
+  document.body.append(f);
+}
+</script></body></html>

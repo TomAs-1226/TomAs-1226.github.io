@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ornimetrics · Thomas Yu</title>
+<meta name="description" content="Ornimetrics: a smart bird feeder that recognises 555 species, flags injured birds and feeds each species its own portion, on a Raspberry Pi 5 with a Hailo-8. Peer-reviewed, presented at ADCOM 2026, patent pending." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="Ornimetrics · Thomas Yu" />
+<meta property="og:description" content="A bird feeder that knows who's eating. Peer-reviewed, open model, patent pending." />
+<meta property="og:image" content="https://tomas-1226.github.io/img/orni/feeder-side.webp" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/">Thomas Yu</a>
+    <nav class="nav-links" aria-label="Pages">
+      <a href="/ornimetrics/">Ornimetrics</a>
+      <a href="/comu/">COMU</a>
+      <a href="/catalyst/">Catalyst</a>
+      <a href="/robotics/">Robotics</a>
+      <a href="/hardware/">Hardware</a>
+      <a href="/channel/">Channel</a>
+    </nav>
+    <button class="kbar-btn" type="button" data-kbar aria-label="Search the site">Search <kbd>⌘K</kbd></button>
+    <a class="nav-mail" href="/#contact">Contact</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+  <div class="nav-sheet" id="sheet">
+    <a href="/ornimetrics/">Ornimetrics</a>
+    <a href="/comu/">COMU</a>
+    <a href="/catalyst/">Catalyst</a>
+    <a href="/robotics/">Robotics</a>
+    <a href="/hardware/">Hardware</a>
+    <a href="/channel/">Channel</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero wrap">
+    <a class="crumb" href="/">← Thomas Yu</a>
+    <h1 class="page-title">Ornimetrics</h1>
+    <div class="hero-row">
+      <p class="page-lede">
+        A bird feeder that knows who's eating. It names the species, feeds each one its own
+        portion, spots birds that need help and learns its regulars, all on a Raspberry&nbsp;Pi.
+      </p>
+      <dl class="hero-facts">
+        <div><dt>Since</dt><dd>2024, founder and sole developer</dd></div>
+        <div><dt>Paper</dt><dd>First author · CS &amp; IT Vol. 16 · ADCOM 2026</dd></div>
+        <div><dt>Patent</dt><dd>U.S. application filed 2026</dd></div>
+        <div><dt>Model</dt><dd><a href="https://huggingface.co/Ornimetrics/ornimetrics-edge" target="_blank" rel="noopener">Open on Hugging Face</a></dd></div>
+      </dl>
+    </div>
+    <div class="spline spline-hero" data-spline-frame="https://my.spline.design/untitled-MmJUhUj8soPqn03HDgkSZNwp/" aria-label="Animated 3D model of the Ornimetrics feeder">
+      <img class="spline-poster" src="/img/orni/feeder-side.webp" alt="" />
+    </div>
+    <p class="stage-cap">The feeder, modelled and animated in Spline. Drag to look around it.</p>
+  </section>
+
+  <section class="wrap photo-row" aria-label="Photos of the feeder">
+    <figure><img src="/img/orni/feeder-marble.webp" alt="The Ornimetrics feeder: black seed hopper on a camera housing over a square tray" loading="lazy" /></figure>
+    <figure><img src="/img/orni/feeder-side.webp" alt="The feeder from the side, camera window facing out" loading="lazy" /></figure>
+    <figure><img src="/img/orni/feeder-window.webp" alt="The feeder on a table by a window" loading="lazy" /></figure>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">Why</p>
+      <h2>The end of the scramble</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">An ordinary tray is first come, first served: bullies crowd out timid birds, squirrels empty it, and leftover seed rots. Ornimetrics decides who eats.</p>
+      <div class="flow" aria-label="What the feeder does with each visitor">
+        <div><b>Watch</b><span>the camera runs the detector continuously</span></div>
+        <div><b>Recognise</b><span>bird, squirrel, person or dog, then the species</span></div>
+        <div><b>Feed</b><span>the disk turns out that species' portion</span></div>
+        <div><b>Log</b><span>photo, species and time, synced to the app</span></div>
+        <div><b>Cool down</b><span>per species, then back to watching</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="action">
+    <div class="sec-head">
+      <p class="sec-label">In action</p>
+      <h2>Watch it feed</h2>
+    </div>
+    <div class="sec-body">
+      <div class="media-pair">
+        <figure>
+          <video class="clip" src="/img/orni/feeder-demo.mp4" poster="/img/orni/feeder-demo-poster.webp" autoplay muted loop playsinline preload="none" aria-label="The feeder dispensing seed onto its tray"></video>
+          <figcaption>The prototype turning out a portion, with the recognition feed on the laptop behind it.</figcaption>
+        </figure>
+        <figure>
+          <button class="yt" type="button" data-yt="iwKFyFyVEkc" aria-label="Play the Ornimetrics introduction video">
+            <img src="/img/orni/video.webp" alt="" loading="lazy" />
+            <span class="yt-play" aria-hidden="true"></span>
+          </button>
+          <figcaption>The introduction video.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="tour">
+    <div class="sec-head">
+      <p class="sec-label">Parts tour</p>
+      <h2>Four parts</h2>
+    </div>
+    <div class="sec-body">
+      <div class="tour" data-tour>
+        <div class="tour-tabs" role="tablist" aria-label="Feeder parts">
+          <button role="tab" aria-selected="true" data-part="dispense">Dispensing</button>
+          <button role="tab" aria-selected="false" data-part="tray">Tray</button>
+          <button role="tab" aria-selected="false" data-part="storage">Feed storage</button>
+          <button role="tab" aria-selected="false" data-part="camera">Camera housing</button>
+        </div>
+        <div class="tour-stage">
+          <div class="spline" data-part-scene="dispense" data-spline-code="https://prod.spline.design/33aQtUxUaW7BZOpm/scene.splinecode"></div>
+          <div class="spline" data-part-scene="tray" data-spline-code="https://prod.spline.design/PjN5ispLQG2yKD7m/scene.splinecode" hidden></div>
+          <div class="spline" data-part-scene="storage" data-spline-code="https://prod.spline.design/gytb6j65teR0XGin/scene.splinecode" hidden></div>
+          <div class="spline" data-part-scene="camera" data-spline-frame="https://my.spline.design/untitled-TzS8d7Z7iJ42tijaQeO8HGVx/" hidden></div>
+        </div>
+        <div class="tour-copy">
+          <p data-part-copy="dispense"><b>Dispensing mechanism.</b> A rotating disk with two pockets meters the seed out in exact amounts, and an incline under it pours the portion gently onto the tray. This is the mechanism behind the patent.</p>
+          <p data-part-copy="tray" hidden><b>Tray.</b> Shaped so birds can grip the edge while they eat their portion. Five 3&nbsp;mm screws lock the dispensing mechanism to it, carrying the weight of the seed and the birds.</p>
+          <p data-part-copy="storage" hidden><b>Feed storage.</b> The hopper on top holds the seed and feeds the disk below it by gravity.</p>
+          <p data-part-copy="camera" hidden><b>Camera housing.</b> Holds the camera right at the tray, under the hopper, so every bird that lands is in frame.</p>
+        </div>
+      </div>
+      <p class="stage-cap">All four modelled and animated in Spline. Drag to turn them.</p>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">How it sees</p>
+      <h2>One backbone, three answers</h2>
+    </div>
+    <div class="sec-body">
+      <figure class="pipeline" aria-label="How the Ornimetrics pipeline is wired" style="margin-top:0">
+        <div class="pl-col">
+          <div class="pl-box"><b>Camera</b><span>live feed at the feeder</span></div>
+        </div>
+        <div class="pl-col">
+          <div class="pl-box"><b>Detector</b><span>YOLOv11n on the Hailo-8, about 30 fps</span></div>
+        </div>
+        <div class="pl-col">
+          <div class="pl-box"><b>Backbone</b><span>EfficientNetV2-S, each bird encoded once</span></div>
+        </div>
+        <div class="pl-col pl-heads">
+          <div class="pl-box"><b>Species</b><span>555 North American species</span></div>
+          <div class="pl-box"><b>Welfare</b><span>spots birds that look hurt</span></div>
+          <div class="pl-box"><b>Re-ID</b><span>recognises returning birds</span></div>
+        </div>
+        <figcaption>The detector runs continuously on the Hailo-8; the three heads run on the Pi's CPU only when a bird is in frame, so the video never slows. A microphone path names birds by their calls.</figcaption>
+      </figure>
+      <dl class="figures">
+        <div><dt>0.93</dt><dd>mAP@50, the feeder detector</dd></div>
+        <div><dt>86.9%</dt><dd>top-1 over 555 species</dd></div>
+        <div><dt>0.963</dt><dd>AUC spotting injured birds, with no injured photos in training</dd></div>
+        <div><dt>45,000+</dt><dd>training images</dd></div>
+      </dl>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Model</th><th>What it is</th><th>Result</th></tr></thead>
+          <tbody>
+            <tr><td>Detector</td><td>YOLOv11n, INT8, compiled for the Hailo-8</td><td>0.93 mAP@50 at about 30 fps</td></tr>
+            <tr><td>Species</td><td>EfficientNetV2-S fine-tuned on NABirds</td><td>86.9% top-1 over 555 species</td></tr>
+            <tr><td>Species (open)</td><td>The same network on Creative Commons photos</td><td>302 species, licensed for commercial use</td></tr>
+            <tr><td>Welfare</td><td>Learns what healthy birds look like and measures how far a new one sits from it</td><td>AUC 0.963 injured, 0.974 dead</td></tr>
+            <tr><td>Re-ID</td><td>ArcFace embeddings with a gallery per species</td><td>Enrols new regulars automatically</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="links">
+        <a href="https://huggingface.co/Ornimetrics/ornimetrics-edge" target="_blank" rel="noopener">Model on Hugging Face</a>
+        <a href="https://github.com/TomAs-1226/Ornimetrics-AI" target="_blank" rel="noopener">AI source</a>
+        <a href="https://github.com/TomAs-1226/ornimetrics_app" target="_blank" rel="noopener">App source</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="paper">
+    <div class="sec-head">
+      <p class="sec-label">Published</p>
+      <h2>The paper</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">Tested at the feeder itself: how often it named the bird, and how much seed each species left behind.</p>
+      <p class="chart-title">Correct identifications, 100 trials per species</p>
+      <div class="bars" role="img" aria-label="Accuracy: Dove 92 percent, Chickadee 88, Sparrow 84, Finch 76, overall 85">
+        <div class="bar"><span>Dove</span><div class="bar-track"><div class="bar-fill" style="--w:92%"></div></div><b>92%</b></div>
+        <div class="bar"><span>Chickadee</span><div class="bar-track"><div class="bar-fill" style="--w:88%"></div></div><b>88%</b></div>
+        <div class="bar"><span>Sparrow</span><div class="bar-track"><div class="bar-fill" style="--w:84%"></div></div><b>84%</b></div>
+        <div class="bar"><span>Finch</span><div class="bar-track"><div class="bar-fill" style="--w:76%"></div></div><b>76%</b></div>
+        <div class="bar bar-total"><span>Overall</span><div class="bar-track"><div class="bar-fill" style="--w:85%"></div></div><b>85%</b></div>
+      </div>
+      <p class="chart-title">Uneaten seed per feeding session, 15 trials</p>
+      <div class="bars" role="img" aria-label="Average uneaten seed: Sparrow 1.4 grams, Finch 0.9, Dove 0.4">
+        <div class="bar"><span>Sparrow</span><div class="bar-track"><div class="bar-fill" style="--w:93%"></div></div><b>1.4 g</b></div>
+        <div class="bar"><span>Finch</span><div class="bar-track"><div class="bar-fill" style="--w:60%"></div></div><b>0.9 g</b></div>
+        <div class="bar"><span>Dove</span><div class="bar-track"><div class="bar-fill" style="--w:27%"></div></div><b>0.4 g</b></div>
+      </div>
+      <p class="chart-note">Sparrows waste the most, which is exactly what per-species portions are for.</p>
+      <div class="paper" style="margin-top:44px">
+        <p class="paper-venue">CS &amp; IT Conference Proceedings, Vol.&nbsp;16 · presented at the 12th International Conference on Advanced Computing (ADCOM 2026), Vancouver, February 2026</p>
+        <p class="paper-title">Ornimetrics: Design and Evaluation of an AI-Enabled Smart Bird Feeder for Species Recognition, Waste Reduction, and Ecological Monitoring</p>
+        <p class="paper-authors">Baichen Yu (first author), Tyler Boulom</p>
+        <p class="links">
+          <a href="https://csitcp.org/abstract/16/164csit17" target="_blank" rel="noopener">Abstract</a>
+          <a href="https://aircconline.com/csit/papers/vol16/csit160417.pdf" target="_blank" rel="noopener">Full paper (PDF)</a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">What it grew into</p>
+      <h2>Beyond the feeder</h2>
+    </div>
+    <div class="sec-body">
+      <div class="index index-2" style="margin-top:0">
+        <a class="card" href="/comu/">
+          <div class="card-media"><img src="/img/comu/comu-murre.webp" alt="" loading="lazy" style="object-position:50% 40%" /></div>
+          <div class="card-body">
+            <span class="card-kicker">AI for wildlife rescue</span>
+            <h3>COMU</h3>
+            <p>The Wetlands &amp; Wildlife Care Center's AI front desk, built on what Ornimetrics taught me.</p>
+            <span class="card-go">COMU</span>
+          </div>
+        </a>
+        <a class="card" href="/hardware/">
+          <div class="card-media">
+            <div class="stage" data-model="/models/o0x-s.glb" data-kind="board" data-az="0.4" data-zoom="0.85">
+              <canvas aria-label="3D model of the O0X sensor card"></canvas>
+            </div>
+          </div>
+          <div class="card-body">
+            <span class="card-kicker">Its own board</span>
+            <h3>O0X</h3>
+            <p>A sensor node I designed from scratch for the next feeder: its own camera processor and a card of sensors standing beside it.</p>
+            <span class="card-go">The boards</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <a class="next-page wrap" href="/comu/">
+    <div><span>Next</span><b>COMU</b></div><i>→</i>
+  </a>
+</main>
+
+<footer class="foot wrap">
+  <span>Thomas (Baichen) Yu</span>
+  <span>Orange County, California</span>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/motion.js" defer></script>
+<script type="module" src="/assets/stage.js"></script>
+<script type="module" src="/assets/media.js"></script>
+</body>
+</html>

@@ -1,124 +1,127 @@
-<!DOCTYPE html>
-<html lang="en" data-tone="dark">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TomAs测评 — Bilibili Channel</title>
-  <meta name="description" content="TomAs测评 — a high-school tech channel on Bilibili. Hardware reviews and a daily tech-news brief. Live followers, full video catalog, and collections." />
-  <link rel="stylesheet" href="/liquid-engine.css" />
-  <link rel="stylesheet" href="channel.css" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TomAs测评 · Thomas Yu</title>
+<meta name="description" content="TomAs测评, Thomas Yu's Mandarin tech channel on Bilibili: device reviews, the history of Apple's A- and M-series chips, and tech news." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="TomAs测评 · Thomas Yu" />
+<meta property="og:description" content="A Mandarin tech channel on Bilibili: reviews, chip history and tech news." />
+<meta property="og:image" content="https://tomas-1226.github.io/img/channel-cover.webp" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
 </head>
 <body>
-  <div class="aurora" aria-hidden="true"><span></span><span></span><span></span></div>
-  <div class="grain" aria-hidden="true"></div>
 
-  <header id="nav" class="cnav" data-lg="card">
-    <a class="cnav-back" href="/">← Thomas Yu</a>
-    <nav class="cnav-links">
-      <a href="#about">About</a>
-      <a href="#videos">Videos</a>
-      <a href="#membership">Support</a>
-      <a href="#collab">Collab</a>
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/">Thomas Yu</a>
+    <nav class="nav-links" aria-label="Pages">
+      <a href="/ornimetrics/">Ornimetrics</a>
+      <a href="/comu/">COMU</a>
+      <a href="/catalyst/">Catalyst</a>
+      <a href="/robotics/">Robotics</a>
+      <a href="/hardware/">Hardware</a>
+      <a href="/channel/">Channel</a>
     </nav>
-    <div id="cnav-cta"></div>
-  </header>
+    <button class="kbar-btn" type="button" data-kbar aria-label="Search the site">Search <kbd>⌘K</kbd></button>
+    <a class="nav-mail" href="/#contact">Contact</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+  <div class="nav-sheet" id="sheet">
+    <a href="/ornimetrics/">Ornimetrics</a>
+    <a href="/comu/">COMU</a>
+    <a href="/catalyst/">Catalyst</a>
+    <a href="/robotics/">Robotics</a>
+    <a href="/hardware/">Hardware</a>
+    <a href="/channel/">Channel</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</header>
 
-  <main>
-    <!-- HERO -->
-    <section class="chero">
-      <div id="chero-card" class="chero-card">
-        <div class="chero-loading">Loading channel…</div>
+<main>
+  <section class="page-hero wrap">
+    <a class="crumb" href="/">← Thomas Yu</a>
+    <div class="chan-head">
+      <a class="chan-face" href="https://space.bilibili.com/1983280115" target="_blank" rel="noopener" aria-label="TomAs测评 on Bilibili">
+        <img id="bili-face" src="/img/channel-face.webp" alt="TomAs测评 channel avatar" width="400" height="400" />
+      </a>
+      <div>
+        <h1 class="page-title">TomAs测评</h1>
+        <p class="chan-meta"><span class="chan-lv" id="bili-level">LV5</span><span id="bili-sign">美高科技区up 每周更新高质量测评和体验视频</span></p>
       </div>
-    </section>
+    </div>
+    <div class="hero-row">
+      <p class="page-lede">
+        A Mandarin tech channel on Bilibili, made from a US high school. I review the devices I
+        actually use and tell the story of the chips inside them.
+      </p>
+      <dl class="hero-facts">
+        <div><dt>Since</dt><dd>2024</dd></div>
+        <div><dt>Language</dt><dd>Mandarin Chinese</dd></div>
+        <div><dt>Made by</dt><dd>Me: research, script, filming, editing, motion graphics</dd></div>
+        <div><dt>Collabs</dt><dd><a href="mailto:yu_thomas1226@outlook.com">yu_thomas1226@outlook.com</a></dd></div>
+      </dl>
+    </div>
+    <dl class="figures figures-3" id="bili-stats" style="margin-top:clamp(40px,6vw,72px)">
+      <div><dt>1,510</dt><dd>followers</dd></div>
+      <div><dt>339k</dt><dd>views</dd></div>
+      <div><dt>26</dt><dd>videos</dd></div>
+    </dl>
+    <p class="small" id="bili-updated"></p>
+  </section>
 
-    <!-- STATS -->
-    <section class="cstats-wrap">
-      <div id="cstats" class="cstats"></div>
-    </section>
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">Latest</p>
+      <h2>New videos</h2>
+    </div>
+    <div class="sec-body">
+      <div id="bili-videos" class="vids" data-count="9"></div>
+      <p class="links"><a href="https://space.bilibili.com/1983280115" target="_blank" rel="noopener">Everything on Bilibili</a></p>
+    </div>
+  </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="csection">
-      <div id="cabout" class="cabout"></div>
-    </section>
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">Series</p>
+      <h2>Collections</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">Two series trace Apple's chips from the A4 to the M-series; the rest are device reviews and a tech-news brief.</p>
+      <div id="bili-collections" class="vids" style="margin-top:28px"></div>
+    </div>
+  </section>
 
-    <!-- FEATURED -->
-    <section id="featured" class="csection" hidden>
-      <div class="csection-head"><div><span class="ckicker">Spotlight</span><h2>Most watched</h2></div></div>
-      <div id="cfeatured" class="cfeatured"></div>
-    </section>
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">How it's made</p>
+      <h2>One person</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">Researched, scripted, shot in 4K and edited by me, with motion graphics in React. Sponsored videos raised $1,000 for the robotics team.</p>
+      <a class="big-mail" href="mailto:yu_thomas1226@outlook.com" style="margin-top:12px">yu_thomas1226@outlook.com</a>
+    </div>
+  </section>
 
-    <!-- VIDEOS -->
-    <section id="videos" class="csection">
-      <div class="csection-head">
-        <div>
-          <span class="ckicker">Catalog</span>
-          <h2>Videos</h2>
-        </div>
-        <div class="cvid-controls">
-          <div id="cv-cat"></div>
-          <div id="cv-search"></div>
-          <div id="cv-sort"></div>
-        </div>
-      </div>
-      <div id="cvideos" class="cvideos"></div>
-      <div id="cvideos-empty" class="cv-empty" hidden>No videos match your search.</div>
-    </section>
+  <a class="next-page wrap" href="/">
+    <div><span>Back to</span><b>Thomas Yu</b></div><i>→</i>
+  </a>
+</main>
 
-    <!-- BY THE NUMBERS -->
-    <section id="numbers" class="csection" hidden>
-      <div class="csection-head"><div><span class="ckicker">Analytics</span><h2>Channel by the numbers</h2></div></div>
-      <div id="cnumbers" class="cnumbers"></div>
-    </section>
+<footer class="foot wrap">
+  <span>Thomas (Baichen) Yu</span>
+  <span>Orange County, California</span>
+</footer>
 
-    <!-- COLLECTIONS -->
-    <section id="collections" class="csection">
-      <div class="csection-head"><div><span class="ckicker">合集 · Series</span><h2>Collections</h2></div></div>
-      <div id="ccollections" class="ccollections"></div>
-    </section>
-
-    <!-- UPCOMING -->
-    <section id="upcoming" class="csection" hidden>
-      <div class="csection-head"><div><span class="ckicker">On the way</span><h2>Coming soon</h2></div>
-        <div id="cup-suggest"></div></div>
-      <div id="cupcoming" class="cupcoming"></div>
-    </section>
-
-    <!-- MEMBERSHIP -->
-    <section id="membership" class="csection" hidden>
-      <div class="csection-head"><div><span class="ckicker">充电 · Support</span><h2>Membership &amp; perks</h2></div></div>
-      <p id="cmember-note" class="csection-note"></p>
-      <div id="cmember-tiers" class="cmember-tiers"></div>
-      <div id="cmember-cta" class="center-cta"></div>
-    </section>
-
-    <!-- SPONSORS -->
-    <section id="sponsors" class="csection" hidden>
-      <div class="csection-head"><div><span class="ckicker">Partners</span><h2>Sponsors</h2></div></div>
-      <p id="cspon-note" class="csection-note"></p>
-      <div id="csponsors" class="csponsors"></div>
-    </section>
-
-    <!-- COLLAB / CONTACT -->
-    <section id="collab" class="csection">
-      <div id="ccollab" class="ccollab" data-lg="card">
-        <span class="lg-rim"></span>
-        <div class="lg-content">
-          <span class="ckicker">Work with me</span>
-          <h2>Collabs &amp; sponsorships</h2>
-          <p id="ccollab-note" class="ccollab-note"></p>
-          <div id="ccollab-actions" class="ccollab-actions"></div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="cfoot">
-    <span>TomAs测评 · 美高科技区</span>
-    <a href="/">← back to portfolio</a>
-    <span id="cupdated"></span>
-  </footer>
-
-  <script src="/liquid-engine.js"></script>
-  <script src="channel.js"></script>
+<script src="/assets/site.js" defer></script>
+<script src="/assets/motion.js" defer></script>
+<script src="/assets/bili.js" defer></script>
 </body>
 </html>

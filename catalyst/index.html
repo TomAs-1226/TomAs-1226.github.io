@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Catalyst · Thomas Yu</title>
+<meta name="description" content="FRC Catalyst, the whole-robot library for FIRST Robotics Competition teams on CTRE Phoenix 6: mechanisms, swerve, a robot-wide state machine, physics, autonomy and telemetry, configured through builders. 1.12 for the roboRIO, 2.0 for Systemcore." />
+<meta name="theme-color" content="#08080a" />
+<meta property="og:title" content="Catalyst · Thomas Yu" />
+<meta property="og:description" content="The whole-robot library for FRC. 1.12 on the roboRIO, 2.0 on Systemcore and WPILib 2027." />
+<meta property="og:image" content="https://tomas-1226.github.io/img/catalyst-console.webp" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
+</head>
+<body class="theme-catalyst">
+
+<header class="nav">
+  <div class="nav-in">
+    <a class="mark" href="/">Thomas Yu</a>
+    <nav class="nav-links" aria-label="Pages">
+      <a href="/ornimetrics/">Ornimetrics</a>
+      <a href="/comu/">COMU</a>
+      <a href="/catalyst/">Catalyst</a>
+      <a href="/robotics/">Robotics</a>
+      <a href="/hardware/">Hardware</a>
+      <a href="/channel/">Channel</a>
+    </nav>
+    <button class="kbar-btn" type="button" data-kbar aria-label="Search the site">Search <kbd>⌘K</kbd></button>
+    <a class="nav-mail" href="/#contact">Contact</a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">Menu</button>
+  </div>
+  <div class="nav-sheet" id="sheet">
+    <a href="/ornimetrics/">Ornimetrics</a>
+    <a href="/comu/">COMU</a>
+    <a href="/catalyst/">Catalyst</a>
+    <a href="/robotics/">Robotics</a>
+    <a href="/hardware/">Hardware</a>
+    <a href="/channel/">Channel</a>
+    <a href="/#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero wrap">
+    <a class="crumb" href="/">← Thomas Yu</a>
+    <h1 class="page-title">Catalyst</h1>
+    <div class="hero-row">
+      <p class="page-lede">
+        The whole-robot library for FRC. Mechanisms, swerve, a state machine for the entire
+        robot, physics, autonomy and telemetry, configured through builders instead of
+        rewritten every season.
+      </p>
+      <dl class="hero-facts">
+        <div><dt>Stable</dt><dd>1.12.0 · roboRIO, WPILib 2026</dd></div>
+        <div><dt>Next</dt><dd>2.0.0-rc.1 · Systemcore, WPILib 2027</dd></div>
+        <div><dt>Built on</dt><dd>CTRE Phoenix 6, Java</dd></div>
+        <div><dt>Source</dt><dd><a href="https://github.com/TomAs-1226/FrcCatalyst" target="_blank" rel="noopener">github.com/TomAs-1226/FrcCatalyst</a></dd></div>
+      </dl>
+    </div>
+    <figure class="hero-media" style="margin-inline:0">
+      <img class="cat-banner" src="/img/catalyst/banner.svg" alt="FrcCatalyst 2.0: Different computer, same library. WPILib 2027 alpha-7, Systemcore image 14, Commands v3. Version 2.0.0-rc.1, beta, on JitPack." width="1200" height="340" />
+    </figure>
+    <p class="links">
+      <a href="https://tomas-1226.github.io/FrcCatalyst/" target="_blank" rel="noopener">Documentation</a>
+      <a href="https://tomas-1226.github.io/FrcCatalyst/versions.html" target="_blank" rel="noopener">Which version do I need?</a>
+      <a href="https://github.com/TomAs-1226/FrcCatalyst/releases" target="_blank" rel="noopener">Releases</a>
+      <a href="https://tomas-1226.github.io/FrcCatalyst/downloads.html" target="_blank" rel="noopener">Downloads</a>
+    </p>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">Why</p>
+      <h2>A mechanism is a description</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">
+        Every FRC season a team rewrites the same elevator, arm and shooter: motor setup,
+        feedforward, soft limits, simulation, logging. Catalyst turns that into a description of
+        the mechanism. You say what it is; the library does the rest the same way every time.
+      </p>
+<pre class="code" aria-label="A Catalyst 2.0 elevator"><span class="c">// Catalyst 2.0: a two-motor elevator with named positions</span>
+LinearMechanism elevator = <span class="k">new</span> LinearMechanism(
+    LinearMechanism.Config.builder()
+        .name(<span class="n">"Elevator"</span>).motor(<span class="n">13</span>).follower(<span class="n">14</span>, <span class="k">true</span>)
+        .motorType(MotorType.KRAKEN_X60)
+        .gearRatio(<span class="n">10.0</span>).drumRadius(<span class="n">0.0254</span>)
+        .range(<span class="n">0.0</span>, <span class="n">1.2</span>).mass(<span class="n">5.0</span>)
+        .pid(<span class="n">50</span>, <span class="n">0</span>, <span class="n">0.5</span>).gravityGain(<span class="n">0.35</span>)
+        .motionMagic(<span class="n">2.0</span>, <span class="n">4.0</span>, <span class="n">20.0</span>)
+        .position(<span class="n">"STOW"</span>, <span class="n">0.0</span>).position(<span class="n">"HIGH"</span>, <span class="n">1.1</span>)
+        .build());
+
+<span class="k">new</span> Trigger(operator::getYButton).onTrue(elevator.goTo(<span class="n">"HIGH"</span>));</pre>
+      <p class="note" style="margin-top:16px">That elevator comes with Motion Magic, gravity feedforward, a physics simulation, SysId, live tuning and telemetry under <code class="inl">/Catalyst/Elevator/</code>, without another line.</p>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="versions">
+    <div class="sec-head">
+      <p class="sec-label">Versions</p>
+      <h2>Two computers, one library</h2>
+    </div>
+    <div class="sec-body">
+      <p class="lead">
+        FIRST is moving from the roboRIO to Systemcore. Catalyst follows both: 1.x for the robots
+        that compete now, 2.0 for the new controller and WPILib 2027.
+      </p>
+      <div class="table-wrap">
+        <table class="table">
+          <thead><tr><th>Line</th><th>Latest</th><th>Runs on</th><th>Install</th><th>Use it for</th></tr></thead>
+          <tbody>
+            <tr><td>1.x</td><td><code>1.12.0</code><br />Aug 7, 2026</td><td>roboRIO · WPILib 2026 · Java 17</td><td>JitPack, or the stable vendordep</td><td>Competition robots</td></tr>
+            <tr><td>2.0</td><td><code>2.0.0-rc.1</code><br />Oct 16, 2026</td><td>Systemcore image 14 · WPILib 2027 alpha-7 · Java 25 · Phoenix 26.70</td><td>JitPack, or the beta vendordep</td><td>The new controller</td></tr>
+            <tr><td>2.0 alpha-6</td><td><code>2.0.0-rc.4-a6</code><br />Oct 1, 2026</td><td>Systemcore image 13 · WPILib 2027 alpha-6</td><td>Source build only</td><td>The first Systemcore image</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>2.0 moves to Commands v3 and Java 25, yet 974 of 986 public methods kept their names, so porting a robot is a short list of renames.</p>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">What's in it</p>
+      <h2>The whole robot</h2>
+    </div>
+    <div class="sec-body">
+      <div class="features features-3">
+        <div><h3>10 mechanism builders</h3><p>Elevators, arms, turrets, flywheels, claws and more, each self-simulating and self-tuning.</p></div>
+        <div><h3>Whole-robot state machine</h3><p><code class="inl">Superstructure</code> runs every mechanism as one machine.</p></div>
+        <div><h3>Swerve + vision</h3><p>Drive-to-pose, pathfinding and Limelight MegaTag fusion.</p></div>
+        <div><h3>Physics Core</h3><p>Slip, collisions, live centre of mass, self-identified parameters.</p></div>
+        <div><h3>Autonomy 2.1</h3><p>Shared control that helps the driver instead of taking over.</p></div>
+        <div><h3>Telemetry + tuning</h3><p>Everything on NetworkTables, SysId everywhere, eleven browser tools.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap" id="suite">
+    <div class="sec-head">
+      <p class="sec-label">The suite</p>
+      <h2>Apps around it</h2>
+    </div>
+    <div class="sec-body">
+      <div class="apps">
+        <a class="app app-wide" href="https://github.com/TomAs-1226/CatalystConsole" target="_blank" rel="noopener">
+          <div class="app-head"><img class="app-icon" src="/img/icons/console.webp" alt="" width="44" height="44" /><div><b>Catalyst Console</b><span>Driver-station dashboard</span></div><em>2.1</em></div>
+          <img class="app-shot" src="/img/catalyst-console-field.webp" alt="Catalyst Console during autonomous" loading="lazy" />
+        </a>
+        <a class="app" href="https://github.com/TomAs-1226/CatalystPit" target="_blank" rel="noopener">
+          <div class="app-head"><img class="app-icon" src="/img/icons/pit.webp" alt="" width="44" height="44" /><div><b>Catalyst Pit</b><span>Checklist, batteries, queue</span></div><em>0.1</em></div>
+          <img class="app-shot" src="/img/work/pit-checklist.webp" alt="Catalyst Pit checklist" loading="lazy" />
+        </a>
+        <a class="app" href="https://github.com/TomAs-1226/CatalystSetup" target="_blank" rel="noopener">
+          <div class="app-head"><img class="app-icon" src="/img/icons/setup.webp" alt="" width="44" height="44" /><div><b>Catalyst Setup</b><span>One installer for everything</span></div><em>1.0</em></div>
+          <img class="app-shot" src="/img/work/setup.webp" alt="Catalyst Setup installing the suite" loading="lazy" />
+        </a>
+        <a class="app" href="https://github.com/TomAs-1226/CatalystApp" target="_blank" rel="noopener">
+          <div class="app-head"><img class="app-icon" src="/img/icons/app.webp" alt="" width="44" height="44" /><div><b>Catalyst App</b><span>Every tool, one window</span></div><em>2.9</em></div>
+          <img class="app-shot" src="/img/work/catalyst-app.webp" alt="Catalyst App" loading="lazy" />
+        </a>
+        <div class="app">
+          <div class="app-head"><img class="app-icon" src="/img/icons/tab.svg" alt="" width="44" height="44" /><div><b>Catalyst Tab</b><span>Diagnostics on a Tab5</span></div><em>1.0</em></div>
+          <img class="app-shot" src="/img/work/tab-pulse.webp" alt="Catalyst Tab pulse screen on the Tab5" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec wrap">
+    <div class="sec-head">
+      <p class="sec-label">On a robot</p>
+      <h2>Numbers</h2>
+    </div>
+    <div class="sec-body">
+      <div class="duo">
+        <figure>
+          <div class="stage stage-tall" data-model="/models/robot-preview.glb" data-az="0.9">
+            <canvas aria-label="3D model of Team 5805's robot Numbers, turning slowly"></canvas>
+          </div>
+          <figcaption>Numbers · competition robot</figcaption>
+        </figure>
+        <figure>
+          <div class="stage stage-tall" data-model="x1" data-kind="drivebase" data-az="0.6" data-el="0.5">
+            <canvas aria-label="3D model of the Catalyst X1 swerve test drivebase, its modules steering"></canvas>
+          </div>
+          <figcaption>X1 · swerve test drivebase, steering live</figcaption>
+        </figure>
+      </div>
+      <p style="margin-top:28px">Every mechanism on Numbers is a Catalyst builder. New features drive on X1 first.</p>
+      <p class="links"><a href="/robotics/#numbers">Take Numbers apart</a></p>
+    </div>
+  </section>
+
+  <a class="next-page wrap" href="/robotics/">
+    <div><span>Next</span><b>Robotics</b></div><i>→</i>
+  </a>
+</main>
+
+<footer class="foot wrap">
+  <span>Thomas (Baichen) Yu</span>
+  <span>Orange County, California</span>
+</footer>
+
+<script src="/assets/site.js" defer></script>
+<script src="/assets/motion.js" defer></script>
+<script type="module" src="/assets/stage.js"></script>
+</body>
+</html>
