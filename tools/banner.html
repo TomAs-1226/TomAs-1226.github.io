@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!-- The GitHub profile banner. Rendered to PNG by headless Edge (see the profile repo's README);
+     the board is the real O0X model through the site's own viewer. -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&display=block" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500&display=block" rel="stylesheet" />
+<link rel="stylesheet" href="/assets/site.css" />
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/" } }</script>
+<style>
+  html, body { margin: 0; background: #08080a; overflow: hidden; }
+  .b { position: relative; width: 1280px; height: 400px; overflow: hidden;
+       background: radial-gradient(60% 90% at 78% 50%, rgba(230, 194, 90, 0.10), transparent 70%), #08080a; }
+  .t { position: absolute; left: 72px; top: 92px; }
+  .t h1 { font: 600 112px/0.9 'Clash Display', sans-serif; letter-spacing: -0.035em; color: #f3f3f1; margin: 0; }
+  .t p { font: 400 22px/1.45 'Plus Jakarta Sans', sans-serif; color: #c3c4c8; margin: 26px 0 0; max-width: 560px; }
+  .t p b { color: #e6c25a; font-weight: 500; }
+  .t small { display: block; margin-top: 22px; font: 500 15px 'Plus Jakarta Sans', sans-serif; color: #5d6068; letter-spacing: 0.02em; }
+  .s { position: absolute; right: -30px; top: -10px; width: 600px; height: 420px; }
+  .s .stage { width: 100%; height: 100%; aspect-ratio: auto; border: 0; background: transparent; }
+  .line { position: absolute; left: 72px; right: 72px; bottom: 0; height: 1px; background: rgba(255,255,255,.08); }
+</style>
+</head>
+<body>
+  <div class="b">
+    <div class="t">
+      <h1>Thomas Yu</h1>
+      <p>Bird-recognition research, an FRC robot library, and <b>boards I design myself</b>.</p>
+      <small>Orange County, California · tomas-1226.github.io</small>
+    </div>
+    <div class="s">
+      <div class="stage" data-model="/models/o0x-m.glb" data-kind="board" data-az="0.62" data-el="0.6" data-zoom="0.78">
+        <canvas></canvas>
+      </div>
+    </div>
+    <div class="line"></div>
+  </div>
+  <script type="module" src="/assets/stage.js"></script>
+</body>
+</html>
