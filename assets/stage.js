@@ -32,8 +32,7 @@ function start(el) {
         el: el.dataset.el ? Number(el.dataset.el) : undefined,
         zoom: el.dataset.zoom ? Number(el.dataset.zoom) : undefined,
         reduced,
-        /* The transmission pass draws the scene twice; phones get the cheaper polycarbonate. */
-        glassy: !phone,
+        glassy: false, // transmission draws the scene twice; the faint sheet reads the same at this size
         onProgress: (p) => { bar.style.transform = `scaleX(${Math.max(0.04, p)})` },
         onReady: () => { el.dataset.state = 'ready' },
         onError: () => { el.dataset.state = 'failed' },

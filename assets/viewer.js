@@ -128,11 +128,13 @@ export function restyleBoard(root) {
 
 export function createViewer({ canvas, url, kind = 'robot', az = 0.7, el, fov = 26, onProgress, onReady, onError, reduced = false, glassy = true, zoom = 0.95 }) {
   const restEl = el ?? (kind === 'board' ? 0.62 : 0.42)
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true, powerPreference: 'high-performance' })
+  /* Antialiasing is redundant on a dense screen, and a pixel ratio past 1.5 costs far more than it shows. */
+  const dpr = Math.min(window.devicePixelRatio || 1, 1.5)
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: dpr < 1.5, alpha: true, powerPreference: 'high-performance' })
   renderer.toneMapping = THREE.NeutralToneMapping
   renderer.toneMappingExposure = 1.05
   renderer.outputColorSpace = THREE.SRGBColorSpace
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75))
+  renderer.setPixelRatio(dpr)
   const scene = new THREE.Scene()
   scene.environment = studioEnvironment(renderer)
   const camera = new THREE.PerspectiveCamera(fov, 1, 0.005, 60)
@@ -293,9 +295,16 @@ export function createViewer({ canvas, url, kind = 'robot', az = 0.7, el, fov = 
     if (!raf && visible && !disposed) { prev = performance.now(); raf = requestAnimationFrame(tick) }
   }
 
+  let lastDraw = 0
   function tick(now) {
     raf = 0
     if (disposed || !visible) return
+    /* Only the idle turn is moving: 30 frames a second is plenty, and halves the GPU's work. */
+    if (!view.dragging && Math.abs(view.vYaw) < 0.01 && Math.abs(view.vEl) < 0.01 && !modules.length && ready && now - lastDraw < 31) {
+      raf = requestAnimationFrame(tick)
+      return
+    }
+    lastDraw = now
     const dt = Math.min(0.05, (now - prev) / 1000)
     prev = now
     let moving = view.dragging

@@ -110,7 +110,7 @@ export function createScrolly(root) {
   renderer.toneMapping = THREE.NeutralToneMapping
   renderer.toneMappingExposure = 1.05
   renderer.outputColorSpace = THREE.SRGBColorSpace
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75))
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5))
   const scene = new THREE.Scene()
   scene.environment = studioEnvironment(renderer)
   const camera = new THREE.PerspectiveCamera(30, 1, 0.02, 60)
@@ -155,7 +155,7 @@ export function createScrolly(root) {
   loadModel.then((g) => {
     if (disposed) return
     model = g.scene
-    if (!def.parts) restyleRobot(model, !narrow())
+    if (!def.parts) restyleRobot(model, false)
     rig.add(model)
     const names = new Set([...Object.keys(def.layers || {}), ...(def.lift || []), ...(def.intake?.nodes || []), ...Object.values(def.anchors || {}).map((a) => a[0]).filter(Boolean)])
     names.forEach((n) => { const o = model.getObjectByName(n); if (o) { nodes[n] = o; home[n] = o.position.clone() } })
